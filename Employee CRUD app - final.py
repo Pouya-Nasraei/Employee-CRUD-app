@@ -199,14 +199,15 @@ enterName.place(x=170, y=70)
 enterDept = tk.Entry(window, width=25)
 enterDept.place(x=170, y=110)
 
-tk.Button(window, text="Insert", width=10, command=insertData).place(x=20, y=160)
-tk.Button(window, text="Update", width=10, command=updateData).place(x=110, y=160)
-tk.Button(window, text="Fetch", width=10, command=getData).place(x=200, y=160)
-tk.Button(window, text="Delete", width=10, command=deleteData).place(x=290, y=160)
-tk.Button(window, text="Reset", width=10, command=resetfields).place(x=150, y=210)
-tk.Button(window, text="Show All", width=10, command=show).place(x=240, y=210)
+tk.Button(window, text="Insert", width=10, command=insertData).place(x=40, y=160)
+tk.Button(window, text="Update", width=10, command=updateData).place(x=130, y=160)
+tk.Button(window, text="Fetch", width=10, command=getData).place(x=220, y=160)
+tk.Button(window, text="Delete", width=10, command=deleteData).place(x=40, y=210)
+tk.Button(window, text="Reset", width=10, command=resetfields).place(x=130, y=210)
+tk.Button(window, text="Show All", width=10, command=show).place(x=220, y=210)
 
 showData = tk.Listbox(window, width=40)
 showData.place(x=350, y=30)
 
 window.mainloop()
+
