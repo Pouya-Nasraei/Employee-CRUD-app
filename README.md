@@ -188,7 +188,7 @@ Key interface elements:
 Employee-CRUD-App
 │
 ├── Employee CRUD app - final.py
-├── .env
+├── myenv_path.env
 ├── images/
 │   ├── App-Interface.png
 │   └── employee-records.png
