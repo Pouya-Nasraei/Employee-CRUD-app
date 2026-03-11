@@ -1,0 +1,35 @@
+2026-03-11 16:26:53,616 - INFO - Application started
+2026-03-11 16:27:05,862 - INFO - package: mysql.connector.plugins
+2026-03-11 16:27:05,862 - INFO - plugin_name: caching_sha2_password
+2026-03-11 16:27:05,862 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-03-11 16:27:05,864 - INFO - package: mysql.connector.plugins
+2026-03-11 16:27:05,864 - INFO - plugin_name: mysql_native_password
+2026-03-11 16:27:05,876 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2026-03-11 16:27:05,915 - INFO - Database connection successful
+2026-03-11 16:27:05,971 - ERROR - Insert error: 1146 (42S02): Table 'employee.empdetails' doesn't exist
+2026-03-11 16:28:42,738 - INFO - Database connection successful
+2026-03-11 16:28:42,749 - ERROR - Update error: 1146 (42S02): Table 'employee.empdetails' doesn't exist
+2026-03-11 16:29:50,983 - INFO - Database connection successful
+2026-03-11 16:29:50,988 - ERROR - Fetch error: 1146 (42S02): Table 'employee.empdetails' doesn't exist
+2026-03-11 16:30:05,790 - INFO - Database connection successful
+2026-03-11 16:30:05,794 - ERROR - Insert error: 1146 (42S02): Table 'employee.empdetails' doesn't exist
+2026-03-11 17:23:22,937 - INFO - Application started
+2026-03-11 17:23:43,012 - INFO - package: mysql.connector.plugins
+2026-03-11 17:23:43,012 - INFO - plugin_name: caching_sha2_password
+2026-03-11 17:23:43,013 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-03-11 17:23:43,013 - INFO - package: mysql.connector.plugins
+2026-03-11 17:23:43,013 - INFO - plugin_name: mysql_native_password
+2026-03-11 17:23:43,015 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2026-03-11 17:23:43,016 - INFO - Database connection successful
+2026-03-11 17:23:43,033 - INFO - Inserted employee 1364
+2026-03-11 17:23:53,411 - INFO - Database connection successful
+2026-03-11 17:24:00,438 - INFO - Database connection successful
+2026-03-11 17:24:06,506 - INFO - Database connection successful
+2026-03-11 17:24:19,409 - INFO - Application started
+2026-03-11 17:24:22,632 - INFO - package: mysql.connector.plugins
+2026-03-11 17:24:22,632 - INFO - plugin_name: caching_sha2_password
+2026-03-11 17:24:22,632 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLCachingSHA2PasswordAuthPlugin
+2026-03-11 17:24:22,632 - INFO - package: mysql.connector.plugins
+2026-03-11 17:24:22,632 - INFO - plugin_name: mysql_native_password
+2026-03-11 17:24:22,633 - INFO - AUTHENTICATION_PLUGIN_CLASS: MySQLNativePasswordAuthPlugin
+2026-03-11 17:24:22,634 - INFO - Database connection successful
