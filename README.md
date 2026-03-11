@@ -1,20 +1,21 @@
-# Employee CRUD Application
+# Employee Management System (GUI + REST API)
 
 ## Overview
 
-Employee CRUD Application is a desktop database management tool built with **Python, Tkinter, and MySQL**. The application provides a graphical interface that allows users to create, retrieve, update, and delete employee records stored in a relational database.
+Employee Management System is a Python application that demonstrates full **CRUD (Create, Read, Update, Delete)** operations using both a **desktop graphical interface** and a **REST API**.
 
-The system connects securely to a MySQL database using environment variables and enables basic employee data management through a simple GUI.
+The project integrates:
 
-This project demonstrates practical usage of:
+* **Python**
+* **Tkinter GUI**
+* **Flask REST API**
+* **MySQL database**
+* **Environment variables for secure configuration**
+* **Application logging**
 
-* Python database integration
-* GUI development with Tkinter
-* SQL CRUD operations
-* Secure configuration using environment variables
-* Input validation and error handling
+The system allows employee records to be managed through a desktop interface or programmatically via HTTP API endpoints.
 
-The application interacts directly with a MySQL database table and dynamically updates employee records.
+This project demonstrates real-world backend architecture concepts including **modular code design**, **database abstraction**, and **multi-interface applications**.
 
 ---
 
@@ -24,28 +25,24 @@ The application interacts directly with a MySQL database table and dynamically u
 
 ![Application Interface](Images/App-Interface.png)
 
-
 ### Employee Records Display
 
 ![Employee Records](Images/employee-records.png)
 
-
 ---
 
-## Features
+# Features
 
-### Employee Record Management
+## Employee CRUD Operations
 
-The application performs full **CRUD operations** on employee records stored in a MySQL database.
+The system performs complete **Create, Read, Update, and Delete** operations on employee records stored in a MySQL database.
 
-CRUD stands for:
-
-| Operation | Description                 |
-| --------- | --------------------------- |
-| Create    | Add new employee records    |
-| Read      | Fetch employee data         |
-| Update    | Modify employee information |
-| Delete    | Remove employee records     |
+| Operation | Description                          |
+| --------- | ------------------------------------ |
+| Create    | Add new employee records             |
+| Read      | Retrieve employee data               |
+| Update    | Modify existing employee information |
+| Delete    | Remove employee records              |
 
 Each employee record contains:
 
@@ -55,240 +52,275 @@ Each employee record contains:
 
 ---
 
-### Database Connection
+# Dual Interface Architecture
 
-The system connects to a MySQL database using credentials stored in environment variables for security.
+The project provides **two different ways to interact with the system**.
 
-Connection parameters are loaded using `python-dotenv`.
+### 1. Desktop GUI (Tkinter)
 
-Example connection function:
+A graphical user interface allows users to manage employee records through buttons and form fields.
 
-```python
-def get_connection():
-    return mysql.connector.connect(
-        host=os.getenv("DB_HOST"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASS"),
-        database=os.getenv("DB_NAME")
-    )
-```
+Available actions:
 
-This prevents sensitive information from being stored directly in the source code.
+* Insert employee
+* Fetch employee by ID
+* Update employee information
+* Delete employee
+* Display all employees
 
 ---
 
-### Insert Employee
+### 2. REST API (Flask)
 
-Users can add new employee records through the GUI.
+The application also exposes a **RESTful API** for programmatic access.
 
-The application validates input fields and executes an SQL INSERT query.
+| Method | Endpoint          | Description             |
+| ------ | ----------------- | ----------------------- |
+| GET    | `/employees`      | Retrieve all employees  |
+| GET    | `/employees/<id>` | Retrieve employee by ID |
+| POST   | `/employees`      | Create new employee     |
+| PUT    | `/employees/<id>` | Update employee         |
+| DELETE | `/employees/<id>` | Delete employee         |
 
-Example query:
+Example API response:
+
+```json
+{
+  "id": 101,
+  "name": "John Smith",
+  "dept": "Finance"
+}
+```
+
+This allows the system to function as a **backend service** for other applications.
+
+---
+
+# Application Logging
+
+The application logs system activity into a log file:
+
+```
+logs/app.log
+```
+
+Example log entries:
+
+```
+2026-03-11 20:15:30 - INFO - Application started
+2026-03-11 20:16:02 - INFO - Inserted employee 101
+2026-03-11 20:16:15 - INFO - Updated employee 101
+```
+
+Logging helps track system events and assists debugging.
+
+---
+
+# Database Structure
+
+The project uses a MySQL database containing the following table:
 
 ```sql
-INSERT INTO empDetails (empId, empName, empDept)
-VALUES (%s, %s, %s)
+CREATE TABLE empDetails (
+    empId INT PRIMARY KEY,
+    empName VARCHAR(100) NOT NULL,
+    empDept VARCHAR(100) NOT NULL
+);
 ```
 
-After successful insertion, the database transaction is committed.
+A setup script is included:
+
+```
+employees.sql
+```
+
+This script creates the database and required table.
 
 ---
 
-### Fetch Employee Data
+# Project Architecture
 
-Users can retrieve employee information by entering an employee ID.
-
-The application queries the database and automatically fills the form fields with retrieved data.
-
-Example query:
-
-```sql
-SELECT empName, empDept
-FROM empDetails
-WHERE empId = %s
-```
-
----
-
-### Update Employee Records
-
-Existing employee records can be updated through the interface.
-
-Example SQL query:
-
-```sql
-UPDATE empDetails
-SET empName=%s, empDept=%s
-WHERE empId=%s
-```
-
-If the employee ID does not exist, the system informs the user.
-
----
-
-### Delete Employee Records
-
-Employees can be removed from the database by providing their ID.
-
-Example SQL query:
-
-```sql
-DELETE FROM empDetails
-WHERE empId=%s
-```
-
-The application confirms whether a record was successfully deleted.
-
----
-
-### Display All Employees
-
-The system can retrieve and display all employee records stored in the database.
-
-Example query:
-
-```sql
-SELECT * FROM empDetails
-```
-
-Results are displayed inside a Tkinter **Listbox** widget.
-
----
-
-## GUI Implementation
-
-The graphical interface is built using **Tkinter**, Python’s standard GUI toolkit.
-
-Main components include:
-
-* Labels for field descriptions
-* Entry widgets for user input
-* Buttons for CRUD operations
-* A Listbox for displaying database records
-
-Key interface elements:
-
-| Component         | Purpose                       |
-| ----------------- | ----------------------------- |
-| Employee ID Entry | Input employee identifier     |
-| Name Entry        | Input employee name           |
-| Department Entry  | Input employee department     |
-| Insert Button     | Add new employee              |
-| Update Button     | Modify employee record        |
-| Fetch Button      | Retrieve employee information |
-| Delete Button     | Remove employee record        |
-| Show All Button   | Display all employees         |
-| Listbox           | Show database records         |
-
----
-
-## Project Structure
+The application is organized into multiple modules to separate responsibilities.
 
 ```
-Employee-CRUD-App
+Employee-Management-System
 │
-├── Employee CRUD app - final.py
-├── myenv_path.env
-├── images/
-│   ├── App-Interface.png
-│   └── employee-records.png
+├── api.py              # Flask REST API
+├── main.py             # Application entry point
+├── gui.py              # Tkinter graphical interface
+├── functions.py        # Business logic (CRUD operations)
+├── data.py             # Database connection module
+│
+├── employees.sql       # Database initialization script
+├── myenv_path.env      # Environment variables
+│
+├── logs/
+│   └── app.log         # Application logs
+│
 └── README.md
 ```
 
+This modular architecture separates:
+
+* **User interface**
+* **Business logic**
+* **Database access**
+* **API services**
+
+This structure improves maintainability and scalability.
+
 ---
 
-## How to Run the Project
+# Installation
 
-### 1. Clone the repository
-
-```
-git clone https://github.com/yourusername/Employee-CRUD-App.git
-```
-
-### 2. Navigate to the project directory
+## 1. Clone the repository
 
 ```
-cd Employee-CRUD-App
+git clone https://github.com/yourusername/employee-management-system.git
 ```
 
-### 3. Install required dependencies
-
 ```
-pip install mysql-connector-python python-dotenv
+cd employee-management-system
 ```
 
-### 4. Configure environment variables
+---
 
-Create a `.env` file in the project directory:
+# Install Dependencies
+
+```
+pip install flask mysql-connector-python python-dotenv
+```
+
+---
+
+# Configure Environment Variables
+
+Edit the environment file:
+
+```
+myenv_path.env
+```
+
+Example configuration:
 
 ```
 DB_HOST=localhost
-DB_USER=your_username
+DB_USER=root
 DB_PASS=your_password
-DB_NAME=your_database
+DB_NAME=employee
+```
+
+These variables allow the application to connect securely to the database.
+
+---
+
+# Setup the Database
+
+Run the provided SQL script:
+
+```
+employees.sql
+```
+
+Example using MySQL CLI:
+
+```
+mysql -u root -p < employees.sql
+```
+
+This will create the required database and table.
+
+---
+
+# Running the Application
+
+## Run the Desktop Application
+
+```
+python main.py
 ```
 
 ---
 
-### 5. Run the application
+## Run the REST API
 
 ```
-mployee CRUD app - final.py
+python api.py
 ```
 
-Python 3.8 or newer is recommended.
+The API will start at:
+
+```
+http://127.0.0.1:5000
+```
 
 ---
 
-## Example Workflow
+# Example API Request
 
-1. Launch the application
-2. Enter employee information
-3. Click **Insert** to add a new record
-4. Use **Fetch** to retrieve existing employee data
-5. Modify fields and click **Update** to save changes
-6. Click **Delete** to remove an employee record
-7. Use **Show All** to display the entire employee table
+Retrieve all employees:
+
+```
+GET http://127.0.0.1:5000/employees
+```
+
+Create an employee:
+
+```
+POST /employees
+```
+
+Example request body:
+
+```json
+{
+  "id": 101,
+  "name": "Alice",
+  "dept": "Finance"
+}
+```
 
 ---
 
-## Technologies Used
+# Technologies Used
 
 * **Python 3**
-* **Tkinter** – graphical user interface
+* **Tkinter** – desktop GUI framework
+* **Flask** – REST API framework
 * **MySQL** – relational database
-* **mysql-connector-python** – Python database driver
-* **python-dotenv** – environment variable management
-* **SQL** – database query language
+* **mysql-connector-python** – Python MySQL driver
+* **python-dotenv** – environment configuration
+* **Logging module** – application logging
 
 ---
 
-## Learning Objectives
+# Learning Objectives
 
-This project was developed to practice:
+This project demonstrates:
 
-* Python database integration
-* Implementing SQL CRUD operations
-* Building GUI database tools
-* Input validation and error handling
-* Secure configuration management
+* Python modular programming
+* Database integration with MySQL
+* REST API development using Flask
+* GUI development with Tkinter
+* Logging and error tracking
+* Environment-based configuration
+* Separation of concerns in software architecture
 
 ---
 
-## Possible Improvements
+# Possible Future Improvements
 
-Future enhancements could include:
-
-* Employee search functionality
+* API authentication
+* Employee search endpoint
 * Pagination for large datasets
-* Role-based access control
-* Data export to CSV or Excel
-* Improved GUI styling
-* REST API integration
+* Docker containerization
+* Frontend web interface
+* Unit testing with PyTest
+* ORM integration (SQLAlchemy)
 
 ---
 
-## Author
+# Author
 
 Pouya Nasraei
 Python Developer | Software Engineer
