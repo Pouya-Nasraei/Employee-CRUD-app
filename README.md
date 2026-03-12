@@ -153,6 +153,7 @@ Employee-Management-System
 │
 ├── employees.sql       # Database initialization script
 ├── myenv_path.env      # Environment variables
+├── requirements.txt    # Python project dependencies
 │
 ├── logs/
 │   └── app.log         # Application logs
@@ -190,7 +191,9 @@ cd employee-management-system
 ```
 pip install flask mysql-connector-python python-dotenv
 ```
-
+```
+pip install -r requirements.txt
+```
 ---
 
 # Configure Environment Variables
