@@ -23,7 +23,7 @@ This project demonstrates real-world backend architecture concepts including **m
 
 ### Application Interface
 
-![Application Interface](Images/App-Interface.png)
+![Application Interface](Images/App-Interface-new.png)
 
 ### Employee Records Display
 
