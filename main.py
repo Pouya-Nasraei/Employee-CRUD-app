@@ -2,7 +2,6 @@ import os
 import logging
 from gui import start_gui
 
-# Create logs folder if it does not exist
 if not os.path.exists("logs"):
     os.makedirs("logs")
 
