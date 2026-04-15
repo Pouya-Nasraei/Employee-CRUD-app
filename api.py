@@ -14,7 +14,7 @@ def all_employees():
         for r in rows
     ]
 
-    return jsonify(data)
+    return True, jsonify(data)
 
 
 @app.route("/employees/<emp_id>", methods=["GET"])
@@ -25,7 +25,7 @@ def employee(emp_id):
     if not row:
         return jsonify({"error": "Employee not found"}), 404
 
-    return jsonify({
+    return True, jsonify({
         "id": emp_id,
         "name": row[0],
         "dept": row[1]
@@ -37,13 +37,13 @@ def create_employee():
 
     data = request.json
 
-    success, msg = insert_employee(
+    msg = insert_employee(
         data["id"],
         data["name"],
         data["dept"]
     )
 
-    return jsonify({"message": msg})
+    return True, jsonify({"message": msg})
 
 
 @app.route("/employees/<emp_id>", methods=["PUT"])
@@ -51,22 +51,22 @@ def update(emp_id):
 
     data = request.json
 
-    success, msg = update_employee(
+    msg = update_employee(
         emp_id,
         data["name"],
         data["dept"]
     )
 
-    return jsonify({"message": msg})
+    return True, jsonify({"message": msg})
 
 
 @app.route("/employees/<emp_id>", methods=["DELETE"])
 def delete(emp_id):
 
     if delete_employee(emp_id):
-        return jsonify({"message": "Employee deleted"})
+        return True, jsonify({"message": "Employee deleted"})
     else:
-        return jsonify({"error": "Employee not found"}), 404
+        return False, jsonify({"error": "Employee not found"}), 404
 
 
 if __name__ == "__main__":
